@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
 
-        <Button children='ホーム'/>
+        <Button children='ホーム' variants='light'/>
     </div>
   )
 }
