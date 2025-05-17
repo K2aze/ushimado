@@ -6,16 +6,18 @@ interface ButtonProps{
     type?: "submit" | "reset" | "button";
     style?: 'light' | 'dark';
     className?: string;
+    onClick?: () => void;
 }
 
-const Button = ({content='Button', type= 'button', style='dark', className} : ButtonProps) => {
+const Button = ({content='Button', type= 'button', style='dark', className, onClick} : ButtonProps) => {
 
 
     return(
         <button
         type={type}
         className={`${styles.btn} ${styles[`btn--${style}`]} ${className}`}
-         >
+        onClick={onClick}
+        >
             {content}
          </button>
     )
