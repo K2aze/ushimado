@@ -5,16 +5,16 @@ interface ButtonProps{
     content?: ReactNode;
     type?: "submit" | "reset" | "button";
     style?: 'light' | 'dark';
+    className?: string;
 }
 
-const Button = ({content='Button', type= 'button', style='dark',} : ButtonProps) => {
+const Button = ({content='Button', type= 'button', style='dark', className} : ButtonProps) => {
 
 
     return(
         <button
-         type={type}
-         className={`${styles.btn} ${styles[`btn--${style}`]}`}
-
+        type={type}
+        className={`${styles.btn} ${styles[`btn--${style}`]} ${className}`}
          >
             {content}
          </button>
@@ -24,12 +24,13 @@ interface AnchorProps{
     content?: ReactNode;
     style?: 'light' | 'dark';
     active?: boolean;
+    to?: string;
 }
 
-const Anchor = ({content = 'Nav Link', style = 'light', active = false} : AnchorProps) => {
+const Anchor = ({content = 'Nav Link', style = 'light', active = false, to} : AnchorProps) => {
     return (
         <a 
-        href="#"
+        href={to? to : '#'}
         className={`${styles.anchor} ${styles[`anchor--${style}`]} ${active? styles.active : ''}`}
         >
         
