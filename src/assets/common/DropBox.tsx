@@ -8,15 +8,19 @@ interface DropBoxProps{
 
 const DropBox = ({parent, children}: DropBoxProps) => {
 
-    const [toggle, setToogle] = useState(false)
-    
+    const [isShow, setIsShow] = useState(false);
+    const clickHanddle = () => {
+        setIsShow(!isShow)
+    }
 
     return (
-        <div className={styles.pr}>
+        <div className={styles.pr} onClick={clickHanddle}>
             {parent}
+        {isShow && (
             <div className={styles.cr}>
                 {children}
             </div>
+        )}
         </div>
             
     )
