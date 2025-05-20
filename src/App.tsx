@@ -1,12 +1,8 @@
 import './styles/main.scss'
-
-
-
+import HomePage from './assets/pages/HomePage'
 function App() {
   return (
-    <div>
-      Nothing here
-    </div>
+    <HomePage />
   )
 }
 
