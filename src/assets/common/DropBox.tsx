@@ -1,30 +1,44 @@
-import { useState, type ReactNode } from "react";
-import styles from './DropBox.module.scss'
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import styles from './DropBox.module.scss';
 
-interface DropBoxProps{
+interface DropBoxProps {
     parent: ReactNode;
     children: ReactNode;
 }
 
-const DropBox = ({parent, children}: DropBoxProps) => {
-
+const DropBox = ({ parent, children }: DropBoxProps) => {
     const [isShow, setIsShow] = useState(false);
-    const clickHanddle = () => {
-        setIsShow(!isShow)
-    }
+    const dropBoxRef = useRef<HTMLDivElement>(null);
+
+    const clickHandle = () => {
+        setIsShow(!isShow);
+    };
+
+    useEffect(() => {
+        const outsideClick = (e: MouseEvent) => {
+            if (dropBoxRef.current && !dropBoxRef.current.contains(e.target as Node)) {
+                setIsShow(false);
+            }
+        };
+
+        document.addEventListener('mousedown', outsideClick);
+        return () => {
+            document.removeEventListener('mousedown', outsideClick);
+        };
+    }, []);
 
     return (
-        <div className={styles.pr} onClick={clickHanddle}>
-            {parent}
-        {isShow && (
-            <div className={styles.cr}>
-                {children}
+        <div className={styles.pr} ref={dropBoxRef}>
+            <div onClick={clickHandle}>
+                {parent}
             </div>
-        )}
+            {isShow && (
+                <div className={styles.cr}>
+                    {children}
+                </div>
+            )}
         </div>
-            
-    )
-}
+    );
+};
 
-
-export default DropBox
+export default DropBox;
