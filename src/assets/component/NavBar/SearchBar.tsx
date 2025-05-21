@@ -8,7 +8,7 @@ interface SearchBarProps{
 const DefaultSearch = () => (
     <div className={styles.search_layout}>
         <label htmlFor='search' className={styles.icon}>
-            <MagnifyingGlassIcon size={24}/>
+            <MagnifyingGlassIcon size={24} color="#fff"/>
         </label>
         <input
         className={styles.input}
@@ -18,7 +18,7 @@ const DefaultSearch = () => (
         placeholder="Search here"
         />
         <div className={styles.key}>
-            <CommandIcon size={16}/>
+            <CommandIcon size={16} color="#fff"/>
             <span>+ K</span>
         </div>
     </div>
@@ -34,7 +34,7 @@ const DefaultResult = () => (
         </ul>
 )
 
-const SearchBar = ({searchUI, resultUI}: SearchBarProps) => {
+function SearchBar({searchUI, resultUI}: SearchBarProps) {
     const [isFocus, setIsFocus] = useState<Boolean>(false);
     const inputRef = useRef<HTMLDivElement>(null);
 
@@ -51,13 +51,28 @@ const SearchBar = ({searchUI, resultUI}: SearchBarProps) => {
             document.removeEventListener('mousedown', handleMouseDown)
         }
     })
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if(e.ctrlKey && e.key.toLowerCase() === 'k'){
+                e.preventDefault();
+                setIsFocus(true);
+            }
+            if(e.key === 'Escape'){
+                setIsFocus(false);
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown)
+        return() => {
+            document.removeEventListener('keydown', handleKeyDown)
+        }
+    })
 
     return(
         <div onFocus={handleFocus} ref={inputRef} className={styles.container}>
             {searchUI ?? <DefaultSearch />}
             <div className={styles.result_layout}>
                 {isFocus && 
-                    <DefaultResult />
+                    (resultUI ?? <DefaultResult />)
                 }    
             </div>
         </div>

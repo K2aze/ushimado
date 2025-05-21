@@ -4,9 +4,10 @@ import styles from './DropBox.module.scss';
 interface DropBoxProps {
     parent: ReactNode;
     children: ReactNode;
+    dropClass?: string;
 }
 
-const DropBox = ({ parent, children }: DropBoxProps) => {
+const DropBox = ({ parent, children, dropClass }: DropBoxProps) => {
     const [isShow, setIsShow] = useState(false);
     const dropBoxRef = useRef<HTMLDivElement>(null);
 
@@ -27,13 +28,25 @@ const DropBox = ({ parent, children }: DropBoxProps) => {
         };
     }, []);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if(e.key === 'Escape'){
+                setIsShow(false)
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown)
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown)
+        }
+    })
+
     return (
         <div className={styles.pr} ref={dropBoxRef}>
             <div onClick={clickHandle}>
                 {parent}
             </div>
             {isShow && (
-                <div className={styles.cr}>
+                <div className={`${styles.cr} ${dropClass}`}>
                     {children}
                 </div>
             )}

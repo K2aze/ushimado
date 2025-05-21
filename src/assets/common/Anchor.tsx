@@ -4,7 +4,7 @@ import styles from './Anchor.module.scss'
 interface ButtonProps{
     content?: ReactNode;
     type?: "submit" | "reset" | "button";
-    style?: 'light' | 'dark';
+    style?: 'light' | 'dark' | 'primary';
     className?: string;
     onClick?: () => void;
 }
@@ -24,16 +24,17 @@ const Button = ({content='Button', type= 'button', style='dark', className, onCl
 }
 interface AnchorProps{
     content?: ReactNode;
-    style?: 'light' | 'dark';
+    style?: 'light' | 'dark' | 'primary';
     active?: boolean;
     to?: string;
+    className?: string;
 }
 
-const Anchor = ({content = 'Nav Link', style = 'light', active = false, to} : AnchorProps) => {
+const Anchor = ({content = 'Nav Link', style = 'light', active = false, to, className} : AnchorProps) => {
     return (
         <a 
         href={to? to : '#'}
-        className={`${styles.anchor} ${styles[`anchor--${style}`]} ${active? styles.active : ''}`}
+        className={`${styles.anchor} ${styles[`anchor--${style}`]} ${active? styles.active : ''} ${className}`}
         >
         
             {content}

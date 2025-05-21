@@ -1,0 +1,85 @@
+.container{
+    background: url('./assets/okc.webp');
+    background-size: cover;
+    background-position: center;
+    width: 100dvw;
+    height: 100dvh;
+
+    display: grid;
+    place-content: center left;
+    position: relative;
+}
+
+.slgcontainer{
+    color: white;
+    margin-left: 15dvw;
+    padding: 1rem 2rem 2rem 2rem;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    &>h1{
+        font-size: 48px;
+        font-weight: 500;
+        &>span{
+            font-size: 64px;
+            display: block;
+            font-weight: 700;
+        }
+    }
+
+    &>p{
+        font-size: 24px;
+        font-weight: 400;
+        max-width: 30dvw;
+    }
+    
+}
+
+.btn{
+    margin-top: 2rem;
+    align-self: flex-end;
+}
+
+.btncontent{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.info {
+    position: absolute;
+    bottom: 5dvh;
+    left: 5dvw;
+    background: #e7e7e700;
+    color: white;
+    padding: 2px 8px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sns{
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 8px;
+    right: 5dvw;
+    bottom: 5dvh;
+    &__item{
+        border-radius: 50%;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background: #ffffff61;
+        padding: 1rem;
+    }
+}

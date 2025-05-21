@@ -2,10 +2,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     width: 100%;
     max-width: 1440px;
-    padding: 0 8px;
-
+    padding: 4px 16px;
+    position: fixed;
+    top: 0;
+    color: white;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    z-index: 9;
 }
 

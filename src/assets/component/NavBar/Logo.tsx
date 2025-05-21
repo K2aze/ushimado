@@ -1,5 +1,5 @@
 import styles from './Logo.module.scss';
-const LogoSection = () => {
+function LogoSection(){
 
     interface LogoProps{
         color?: React.CSSProperties["color"],
