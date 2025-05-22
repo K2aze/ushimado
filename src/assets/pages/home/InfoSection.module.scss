@@ -11,6 +11,8 @@
 
 .heading{
     flex-grow: 1;
+    display: grid;
+    place-content: center;
     &>h2{
         font-size: 48px;
         font-weight: 700;

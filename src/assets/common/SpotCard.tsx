@@ -1,29 +1,27 @@
-import styles from './SpotCard.module.scss'
-
-
+import styles from './SpotCard.module.scss';
 interface SpotCardProps{
-    img: string;
-    onClick?: () => void;
-    title?: string;
-    decs?: string;
-    className?: string;
+    title: string;
+    image: string;
+    description: string;
+    tags?: string[];
 }
 
-const SpotCard = ({img, onClick, title, decs, className}: SpotCardProps) => {
-    return(
-        <div
-        onClick={onClick}
-        className={`${styles.container} ${className}`}
-        >
-            <img src={img} alt={title} />
-            <h4>
-                {title}
-            </h4>
-            <p>
-                {decs}
-            </p>
-        </div>
-    )
-}
+const SpotCard = ({ title, image, description, tags }: SpotCardProps) => {
+  return (
+    <div className={styles.card} style={{ backgroundImage: `url(${image})` }}>
+      <div className={styles.overlay}>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.description}>{description}</p>
+        {tags && (
+          <div className={styles.tags}>
+            {tags.map((tag, index) => (
+              <span key={index} className={styles.tag}>#{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>  
+  );
+};
 
 export default SpotCard;
